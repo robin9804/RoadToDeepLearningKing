@@ -1,0 +1,294 @@
+#206
+def grade(score):
+    if score >= 90:
+        return 'A'
+    elif score >= 80:
+        return 'B'
+    elif score >= 70:
+        return 'C'
+    elif score >= 60:
+        return 'D'
+    else:
+        return 'F'
+print(grade(78))
+
+#210
+def fun(n):
+    num = [i%5 for i in range(1, n)]
+    return sum(num)
+print(fun(8))
+
+#213
+num = input('Enter the number : ')
+num = list(num)
+num = list(map(int, num))
+
+new_val = 0
+while True:
+    new_val = sum(num)
+    if (new_val <10):
+        break
+    num = '{}'.format(new_val)
+    num = list(map(int, num))
+print(new_val)
+
+#219
+def fun_recurring(N):
+    N = list('{}'.format(1/N))
+    del(N[1]);del(N[0])
+    if len(N) <= 10:
+        return 0
+    else:
+        new_list = []
+        for i in N:
+            if i not in new_list:
+                new_list.append(i)
+        res = ''
+        for i in new_list:
+            res += i
+        return res
+print(fun_recurring(11))
+해설지 풀이
+def fun_recurring(N):
+    nstr = str(1/N)[2:]
+    if len(nstr) <= 10:
+        return 0
+    else:
+        rec = ''
+        for i in nstr:
+            rec += i
+            if rec == nstr[len(rec):2*len(rec)]:#슬라이싱으로 rec의 길이만큼 nstr에서 가져와 비교
+                return rec
+
+#220
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+print(matrix)
+print(matrix[1])
+print(matrix[0:2])
+print(matrix[0][2])
+print(matrix[2][0:2])
+
+#228
+import random
+lst = [[random.randint(1, 25) for j in range(5)] for i in range(5)]
+sum1 = 0
+for i in range(5):
+    sum1 += sum(lst[i])
+avg = sum1/25
+if avg >=12.5:
+    print('Big')
+else:
+    print('Small')
+
+#233
+arr = [[16, 27], [39, 100], [19, 88]]
+avg1 = []
+avg2 = []
+for i in range(3):
+    avg1.append(sum(arr[i])/2)
+
+for i in range(2):
+    avg22 = 0
+    for j in range(3):
+        avg22 += arr[j][i]
+    avg2.append(avg22/3)
+avg = 0
+for i in range(3):
+    for j in range(2):
+       avg += arr[i][j]
+avg = avg/(3*2)
+print(avg1)
+print(avg2)
+print(avg)
+
+#238
+num = list(map(int, input('숙제를 제출한 출석번호 : ').split()))
+num = sorted(num)
+students = [i for i in range(1, 21)]
+for i in num:
+    if i in students:
+        students.remove(i)
+print(students)
+
+#244
+num = list(map(int, input('Enter the numbers : ').split(' ')))
+i = 0
+newlist = [num]
+
+for i in range(len(num)-1):
+    num2 = []
+    num2 += num[1:]
+    num2 += [num[0]]
+    newlist.append(num2)
+    num = num2
+
+print(newlist)
+
+#246
+n = int(input('Enter the number : '))
+mylist = [[0 for i in range(n)] for j in range(n)]
+for i in range(n):
+    if i%2 == 0:
+        for j in range(n):
+            mylist[i][j] = n*i+j+1
+    else:
+        for j in range(n):
+            mylist[i][j] = n * i +n -j
+print(mylist)
+
+#247
+n = list(map(int, input('Enter the numbers: ').split(' ')))
+array = [[0]*n[1] for i in range(n[0])]
+k = 1
+for num in range(n[0]+n[1]-1):
+    i = 0; j = 0;
+    a = array[i][j]
+    while a != 0:
+        if j != n[1]-1:
+            j += 1
+            a = array[i][j]
+        else:
+            i += 1
+            a = array[i][j]
+    while i+j == num and n[0]-1 >= i >= 0 and n[1]-1 >= j >= 0:
+        array[i][j] = k
+        i += 1; j -= 1; k += 1
+def printarray(array):
+    for i in range(len(array)):
+        for j in range(len(array[0])):
+            print('%5d' %array[i][j], end = '')
+        print()
+printarray(array)
+#251
+def printHello(n):
+    print('Hello')
+    printHello(n-1) if n > 1 else None
+printHello(5)
+
+#252
+def sum1(n):
+    result = 0
+    for i in range(1, n+1):
+        result += i
+    return result
+
+def sum2(n):
+    if n == 1:
+        return 1
+    else:
+        return n+sum2(n-1)
+print(sum1(50), sum2(50))
+
+#253
+def fun(n):
+    if n == 0:
+        return 1
+    elif n%2 == 0:
+        return fun(n-2)+3
+    else:
+        return fun(n-1)*2-1
+
+for i in range(10):
+    print(fun(i), end = ' ')
+
+#255
+def factorial1(n):
+    if n == 1 or n == 0:
+        return 1
+    else:
+        return n*factorial1(n-1)
+def factorial2(n):
+    res = 1
+    if n == 0 or n == 1:
+        return res
+    else:
+        for i in range(1, n+1):
+            res *= i
+        return res
+
+print(factorial2(4))
+
+#257
+def fibonacci(n):
+    if n == 1 or n == 2:
+        return 1
+    else:
+        return fibonacci(n-1)+fibonacci(n-2)
+for i in range(1, 8):
+    print(fibonacci(i), end = ' ')
+
+#258
+def exp(a, n):
+    if n == 1:
+        return a
+    else:
+        return a*exp(a, n-1)
+print(exp(4, 7))
+
+#263
+N, M = input('Enter the numbers : ').split(' ')
+N, M = int(N), int(M)
+case = [[0]*N for i in range(6**N)]
+i = 6**N; j = N
+def plist(list1, list2):
+    list0 = []
+    for i in list1:
+        for j in list2:
+            list0.append(i+j)
+    return list0
+def fun(N, M):
+    list0 =[]
+    if N == 1:
+        if M in range(1, 7):
+            return [[M]]
+        else:
+            False
+    else:
+        for i in range(1, 7):
+            if fun(N-1, M-i) != False:
+                list0 += plist([[i]], fun(N-1, M-i))
+    return list0
+print(fun(N, M))
+print(len(fun(N, M)))
+
+
+
+
+#265
+def fun(n):
+    if n == 1:
+        return 1
+    elif n == 2:
+        return 2
+    elif n % 10 == 0:
+        return 5*fun(n-1)-7*fun(n-5)
+    elif n%2 == 1:
+        return 2*fun(n-1)-1
+    elif n%2 == 0:
+        return fun(n-1)+2
+
+for i in range(1, 11):
+    print(fun(i), end = ' ')
+
+#268
+def fermat(a, b, c, k):
+    for i in range(3, k+1):
+        if a**i+b**i == c**i:
+            print('Fermat is wrong')
+            break
+        else:
+            print('good')
+fermat(3, 4, 5, 11)
+
+##해설지 풀이
+def fermat(a, b, c, k):
+    is_fermat = True
+    if k == 2:
+        return True
+    elif (a**k + b**k == c**k):
+        return False
+    else:
+        is_fermat == fermat(a, b, c, k-1)
+    return is_fermat
+
+
