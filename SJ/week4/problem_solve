@@ -1,0 +1,327 @@
+##296
+# import math
+# pi = math.pi
+# e = math.e
+# res = math.log(pi**e)*math.sqrt(pi)
+# print(res)
+##302
+# def sum(n):
+#     sum = 0
+#     for i in range(1, n+1):
+#         sum += i
+#     return sum
+# answer = 0
+# for i in range(100):
+#     answer += sum(i)
+# print(answer)
+##303
+# for x in range(11):
+#     for y in range(11):
+#         if 2*x+4*y==10:
+#             print('({}, {})'.format(x, y))
+## 304
+#Combination
+# answer = 0
+# for i in range(1, 4):
+#     for j in range(i+1, 5):
+#             for k in range(j+1, 6):
+#                 print('{} {} {}'.format(i, j, k))
+#                 answer += 1
+# print(answer)
+##305
+# answer = 0
+# for i in range(1, 6):
+#     for j in range(1, 6):
+#         for k in range(1, 6):
+#             if len({i, j, k})==3:
+#                 print('{} {} {}'.format(i, j, k))
+#                 answer += 1
+# print(answer)
+##308
+# num_tokki = [0]*11
+# print(num_tokki)
+# for i in range(11):
+#     if i in range(2):
+#         num_tokki[i] = 2
+#     elif i == 2:
+#         num_tokki[i] = 2*num_tokki[i-2]
+#     else:
+#         num_tokki[i] = num_tokki[i-1]+num_tokki[i-2]
+# print(num_tokki[10])
+##311
+# mylist = []
+# list = [1, 2, 3, 4, 5, 6]
+# for i in list:
+#     for j in list:
+#         for k in list:
+#             for l in list:
+#                 for m in list:
+#                     for n in list:
+#                         if len({i, j, k, l, m, n})==6:
+#                             mylist += [[i, j, k, l, m, n]]
+# print(len(mylist))
+
+# def permutation(list):
+#     if len(list) == 0:
+#         return []
+#     if len(list) == 1:
+#         return [list]
+#     l = []
+#
+#     for i in range(len(list)):
+#         m = list[i]
+#         remList = list[:i]+list[i+1:]
+#         for p in permutation(remList):
+#             l.append([m]+p)
+#     return l
+# a = permutation([1, 2, 3, 4, 5, 6])
+# print(len(a))
+
+##이러한 복잡한 방법을 해결해주는 것이 itertools
+##itertools는 시퀀스에 반복하는 기능들에 다양한 기능을 제공한다.
+##permutation(iterable), combination(iterable), combination_with_replacement(iterable, n)
+## 각각 시퀀스형 객체 (리스트, 문자열 등)의 순열과 조합들을 튜플 형태로 반환한다.
+# import itertools
+# mylist = [1, 2, 3]
+# myp = itertools.permutations(mylist)
+# for i in myp:
+#     print(i, end = ' ')
+# print()
+#
+# myc = itertools.combinations_with_replacement(mylist, 3)
+# for i in myc:
+#     print(i, end = ' ')
+# print()
+#
+# myc2 = itertools.combinations(mylist, 3)
+# for i in myc2:
+#     print(i, end = ' ')
+
+##312
+##itertools의 product(*iter): 중복순열
+# import itertools
+# nums = [1, 2, 3, 4, 5]
+# allcase = itertools.product(nums, nums, nums)
+# n = 0
+# for i in allcase:
+#     print(i, end = ' ')
+#     n += 1
+# print(n)
+
+##313
+# import itertools
+# nums = [1, 2]
+# nums_list = [nums]*3
+# allcase1 = itertools.product(nums, nums, nums)
+# for i in allcase1:
+#     print(i, end = ' ')
+# print()
+#
+# allcase2 = itertools.product(*nums_list)
+# for i in allcase2:
+#     print(i, end = ' ')
+
+##315
+# import itertools
+# num = [i for i in range(6)]
+# myp = itertools.permutations(num)
+# mylist = []
+# for i in myp:
+#     # print(i, end = ' ')
+#     if i[0] != 0:
+#         mylist.append(i)
+# print(len(mylist))
+
+##325
+# answer = 0
+# mylist = []
+# for y in range(1, 109):
+#     for x in range(1, y+1):
+#         if (x**0.5+y**0.5 == 108**0.5):
+#             mylist.append([[x, y]])
+#             answer += 1
+# print(answer)
+# print(mylist)
+
+##342
+# import math
+# import sys
+#
+# print('ax+bx+c = 0')
+# a = float(input('a = '))
+# b = float(input('b = '))
+# c = float(input('c = '))
+#
+# if (a == 0):
+#     print('a= 0 : this is not quadratic equation.')
+#     sys.exit()##이차방정식이 아닐경우 프로그램을 멈춘다.
+# D = b**2 - 4*a*c
+# if D > 0:
+#     x1 = -b/(2*a)+(D)**0.5/(2*a)
+#     x2 = -b / (2 * a) - (D) ** 0.5 / (2 * a)
+#     print('2개의 해: {}, {}'.format(x1, x2))
+# elif D == 0:
+#     x = -b/(2*a)
+#     print('1개의 해 : ', x)
+# else:
+#     x1 = -b/(2*a)+(D)**0.5/(2*a)
+#     x2 = -b / (2 * a) - (D) ** 0.5 / (2 * a)
+#     print('2개의 복소근: {} , {}'.format(x1, x2))
+
+##348
+# def sumMatrix(A1, A2):
+#     res = []
+#     for i in range(len(A1)):
+#         tmp = []
+#         for j in range(len(A2)):
+#             tmp.append(A1[i][j]+A2[i][j])
+#         res.append(tmp)
+#     return res
+# def sumMatrix(A1, A2):
+    # answer = [[A1[i][j]+A2[i][j] for i in range(len(A1[0])) for j in range(len(A1))]]
+    # return answer
+
+# A1 = [[1, 2], [2, 3]];
+# A2 = [[3, 4], [5, 6]];
+# print(sumMatrix(A1, A2))
+
+##374
+# num = int(input('Enter your money:'))
+# res1 = 1
+# for i in range(10):
+#     res1 *= (1.01)
+# res2 = (0.01+0.0005*(10))
+# print(num*(res1+res2))
+
+##379
+# lst = [5, 8, 1, 4, 5, 7, 9, 10, 1, 2]
+# res = []
+# n = 0
+# num1 = 0
+# num2 = 0
+# num3 = [0]*(len(lst)-1)
+# for i in range(len(lst)-1):
+#     if (lst[i+1]>lst[i]):
+#         num3[n] += 1
+#     else:
+#         num3[n+1] = 0
+#         n += 2
+# while (True):
+#     if num3[-1] != max(num3):
+#         del(num3[-1])
+#     else:
+#         break
+#
+# num1 = sum(num3[:-1])+len(num3[:-1])-1
+# num2 = sum(num3[:])+len(num3[:])-1
+# print(lst[num1:num2])
+
+##380
+# N = 5
+# N1 = 5
+# mylist = [[0 for i in range(N)] for j in range(N)]
+# mylist[N-1][0]= N**2
+# i = 0#row index
+# j = 0#col index
+# l = 1
+# k = 1
+# while True:
+#     if j<N-1:
+#         mylist[i][j] = k
+#         j += 1
+#         k += 1
+#     if j == N-1 and i < N1:
+#         mylist[i][j] = k
+#         i += 1
+#         k += 1
+#     if i == N1:
+#         j = 0
+#         N -= 1
+#         i = l
+#         l += 1
+#     if l == N1:
+#         break
+#
+# a = 2;b=3
+# print(mylist)
+# print(mylist[a-1][b-1])
+
+##381
+# mylist = [0, 1, 2, 3]
+# mylist1 = []
+# mylist2 = []
+# for i in range(len(mylist)):
+#     mylist1.append(bin(mylist[i]))
+#     if mylist[i] == 0:
+#         mylist2.append(0)
+#     elif mylist[i] == 1:
+#         mylist2.append(101)
+#     elif mylist[i] ==2:
+#         mylist2.append(110)
+#     elif mylist[i] ==3:
+#         mylist2.append(111)
+#
+# print(mylist1)
+# print(mylist2)
+
+##382
+# def determinant(A):
+#     L = len(A)
+#     #Smallest matrix determinant
+#     first_row = {}
+#     for i in range(L):
+#         first_row[(i,)] = A[-1][i]
+#     row_curr = first_row
+#
+#     #reculsively calculate
+#     for r in range(2, L+1):
+#         row_next = {}
+#         combi_r = []
+#         stack = [[i] for i in range(L)]
+#         while stack != []:
+#             combi = stack.pop()
+#             if len(combi) < r:
+#                 for c in [j for j in range(combi[-1]+1, L)]:
+#                     stack.append(combi+[c])
+#             else:
+#                 combi_r.append(combi)
+#         for combi in combi_r:
+#             S = 0
+#             sign = 1
+#             for i in combi:
+#                 key = tuple([j for j in combi if j != i])
+#                 S += sign*A[L-r][i]*row_curr[key]
+#                 sign *= -1
+#             row_next[tuple(combi)] = S
+#         row_curr = row_next
+#     [(_, v)] = row_curr.items()
+#     return v
+#
+# A = [[1, 1, 2], [0, 1, 2], [1, 1, 0]]
+# print()
+# print(determinant(A))
+
+
+# def sub_matrix(arr, i, j):
+#     n = len(arr)
+#     res = [[0 for i in range(n-1)] for j in range(n-1)]
+#     A = 0; B = 0
+#     for a in range(n):
+#         B = 0
+#         for b in range(n):
+#             if a != i and b != j:
+#                 res[A][B] = arr[A][B]
+#                 B += 1
+#         if a != i: A += 1
+#     return res
+# def determinant(arr):
+#     if len(arr) != len(arr[0]):
+#         return -1111111
+#     if len(arr) == 1:
+#         return arr[0][0]
+#     sum = 0
+#     for i in range(len(arr)):
+#         sum += pow(-1, i) *arr[0][i]*determinant(sub_matrix(arr,0,i))
+#     return sum
+# A = [[1, 1, 2], [0, 1, 2], [1, 1, 0]]
+# print(determinant(A))
