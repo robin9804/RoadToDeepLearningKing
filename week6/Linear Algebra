@@ -1,8 +1,0 @@
-import numpy as np  # numpy
-import matplotlib.pylab as plt  # matplot
-
-from sklearn.datasets import load_iris  # 사이킷런, iris data
-
-iris = load_iris()  # iris 데이터 로드
-iris.data[0, :]     # iris 첫 번째 데이터
-
