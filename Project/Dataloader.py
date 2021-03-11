@@ -11,8 +11,8 @@ class MNIST(Dataset):
     """MNIST dataset to test item"""
     def __init__(self, path, transform=None, resolution=1024):
         raw_data = np.array(pd.read_csv(path), dtype=np.float32)
-        self.img = raw_data[:, 1:]
-        self.target = raw_data[:, 0]
+        self.img = raw_data[0:500, 1:]
+        self.target = raw_data[0:500, 0]
         self.transform = transform
         self.resolution = resolution
 
